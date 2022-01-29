@@ -1,0 +1,17 @@
+.login-header {
+    text-align: center;
+}
+
+.login-submit {
+    background-color: #641AB5;
+    width: 100%;
+    border-radius: 18px;
+}
+
+.login-submit:hover {
+    background-color: #410E78;
+}
+
+.login-submit:focus {
+    background-color: #2E0652;
+}
