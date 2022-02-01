@@ -1,17 +1,16 @@
-const Dog = require('./Dog');
 const User = require('./User');
+const Dog = require('./Dog');
+const Favorite = require('./Favorite');
 const { db } = require('../db');
 
-/*
-Add relationship here.
-User may have many dogs as favorite
-stretch goal
-*/
 
+User.belongsToMany(Dog, { through: Favorite })
+Dog.belongsToMany(User, { through: Favorite })
 
 
 module.exports = {
-    Dog,
     User,
+    Dog,
+    Favorite,
     db
-}
+};

@@ -2,7 +2,7 @@ const { db, DataTypes, Model } = require('../db');
 const { User } = require('./User');
 const { Dog } = require('./Dog');
 
-class Favorite extends Model {}
+class Favorite extends Model {};
 
 Favorite.init({
     UserId: {
@@ -23,6 +23,6 @@ Favorite.init({
 {
     sequelize: db,
     timestamps: false,
-})
+});
 
 module.exports = Favorite;

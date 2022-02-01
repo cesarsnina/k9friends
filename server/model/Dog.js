@@ -1,6 +1,6 @@
 const { db, DataTypes, Model } = require('../db');
 
-class Dog extends Model {}
+class Dog extends Model {};
 
 Dog.init({
     name: DataTypes.STRING,
@@ -12,6 +12,6 @@ Dog.init({
 },{
     sequelize: db,
     timestamps: false,
-})
+});
 
 module.exports = Dog;

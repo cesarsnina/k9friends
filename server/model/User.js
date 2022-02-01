@@ -1,6 +1,6 @@
 const { db, DataTypes, Model } = require('../db');
 
-class User extends Model {}
+class User extends Model {};
 
 User.init({
     name: { 
@@ -29,6 +29,6 @@ User.init({
 },{
     sequelize: db,
     timestamps: false,
-})
+});
 
 module.exports = User;
