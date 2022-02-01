@@ -1,20 +1,20 @@
 const path = require('path');
 const fs = require('fs').promises;
 
-const { db, User } = require('../model');
+const { db, Dog } = require('../model');
 
 const seed = async() => {
     await db.sync({force: true});
 
-    const userPath = path.join(__dirname, 'user.json');
+    const dogPath = path.join(__dirname, 'Dog.json');
 
-    const userBuffer = await fs.readFile(userPath);
+    const dogBuffer = await fs.readFile(dogPath);
 
-    const { users } = JSON.parse(String(userBuffer));
+    const { dogs } = JSON.parse(String(dogBuffer));
 
-    const userPromises = users.map(user => User.create(user));
+    const dogPromises = dogs.map(dog => Dog.create(dog));
 
-    await Promise.all(userPromises);
+    await Promise.all(dogPromises);
    
     console.log('Data have been successfully added to our table');
 }

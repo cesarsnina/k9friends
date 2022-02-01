@@ -19,15 +19,16 @@ User.init({
         }
     },
     password: {
-        type: DataTypes.STRING,
+        type: DataTypes.BLOB,
         allowNull: false,
         validate: {
             notEmpty: true
         }
-    }
+    },
+    buf: DataTypes.BLOB
 },{
     sequelize: db,
     timestamps: false,
 })
 
-module.exports = { User };
+module.exports = User;
