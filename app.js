@@ -5,27 +5,28 @@ const passport = require('passport');
 const session = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);
 
-const indexRouter = require('./routes/index');
-const authRouter = require('./routes/auth');
+const seed = require('./server/seed/seed');
+seed();
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
-    store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
+    store: new SQLiteStore({ db: 'sessions.db', dir: './server/database' })
 }));
 app.use(passport.authenticate('session'));
 
-app.use('/', indexRouter);
-app.use('/', authRouter);
+app.use('/api', require('./server/api/index'));
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// TODO: update this after we add the components
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,6 +42,10 @@ app.use(function(err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     // res.render('error');
+});
+
+app.listen(3000, () => {
+    console.log('App is listening!');
 });
 
 module.exports = app;

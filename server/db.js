@@ -2,7 +2,7 @@ const { Sequelize, DataTypes, Model } = require('sequelize');
 
 const db = new Sequelize('database', 'username', 'password', {
     dialect: 'sqlite',
-    storage: './k9friends.sqlite',
+    storage: './server/database/k9friends.sqlite',
     logging: false
 })
 
