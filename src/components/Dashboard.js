@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import { data } from './seed'
 import './styles/Dashboard.css'
 
@@ -22,4 +22,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default Dashboard;
