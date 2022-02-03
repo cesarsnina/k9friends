@@ -6,14 +6,13 @@ const Header = () => {
 
     return (
         <nav>
-            <Link to="/"><h1>K9friends</h1></Link>
+            <Link to="/" className='link-style'><h1>K9friends</h1></Link>
             <ul>
-                <li><a href="#">Find A Pet</a></li>
-                <Link to="/signup"><li>Sign Up</li></Link>
-                <Link to="/login"><li>Log in</li></Link>
+                <Link to="/" className='link-style'><li>Find A Pet </li></Link>
+                <Link to="/signup" className='link-style'><li>Sign Up</li></Link>
+                <Link to="/login" className='link-style'><li>Log in</li></Link>
             </ul>
         </nav>
-        // <h1>This is Header file</h1>
     )
 }
 
