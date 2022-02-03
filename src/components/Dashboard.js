@@ -1,10 +1,25 @@
 import react from 'react';
+import { data } from './seed'
+import './styles/Dashboard.css'
 
-const Dashboard= () => {
+
+const Dashboard = () => {
 
     return (
-        <h1>This is Dashboard file</h1>
+     
+      <div className='dog-container'>
+        {data.map((dog, idx) => (
+
+          <div key={idx} className='dog-block'>
+            <a  href="https://en.wikipedia.org/wiki/Main_Page">       
+              <img  className="dog-image" src={dog.image}></img>
+              <p className='dog-name'>{dog.name}</p>
+            </a>
+          </div>
+
+        ))}
+      </div>
     )
 }
 
-export default Dashboard;
+export default Dashboard

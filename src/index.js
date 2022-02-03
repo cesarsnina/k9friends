@@ -12,7 +12,7 @@ ReactDOM.render(
     <Router>
 		<React.StrictMode>
 			<TestComponent />
-			{/* <App /> */}
+			<App />
 		</React.StrictMode>
     </Router>,
 	ROOT
