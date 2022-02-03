@@ -24,10 +24,6 @@ app.use(passport.authenticate('session'));
 
 app.use('/api', require('./server/api/index'));
 
-// TODO: update this after we add the components
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

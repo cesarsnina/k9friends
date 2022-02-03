@@ -19,7 +19,7 @@ User.init({
         }
     },
     password: {
-        type: DataTypes.STRING,
+        type: DataTypes.BLOB,
         allowNull: false,
         validate: {
             notEmpty: true

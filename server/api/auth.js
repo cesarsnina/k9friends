@@ -1,26 +1,35 @@
-const express = require('express');
+const router = require('express').Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
-const { User, db } = require('../model');
+const { User } = require('../model');
 
-const router = express.Router();
-
-passport.use(new LocalStrategy(function verify(username, password, cb) {
-    db.get('SELECT rowid AS id, * FROM Users WHERE username = ?', [ username ], function(err, row) {
-        if (err) { return cb(err); }
-        if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
-
-        crypto.pbkdf2(password, row.buf, 310000, 32, 'sha256', function(err, hashedPassword) {
-            if (err) { return cb(err); }
-            if (!crypto.timingSafeEqual(row.hashed_password, hashedPassword)) {
-                return cb(null, false, { message: 'Incorrect username or password.' });
-            }
-            return cb(null, row);
+passport.use(new LocalStrategy(async function verify(username, password, cb) {
+    try {
+        // fetch user with the name provided
+        const singleUser = await User.findAll({
+            where: { name: username }
         });
-    });
+        
+        // checks if user with the name provided exist
+        if (!singleUser) { return cb(null, false, { message: 'Incorrect username.' }) };
+        
+        // hash password provided and compare it if match
+        crypto.pbkdf2(password, singleUser[0].buf, 310000, 32, 'sha256', function(err, hashedPassword) {
+            if (err) { return cb(err); }
+            
+            // compare the two password
+            if (!crypto.timingSafeEqual(singleUser[0].password, hashedPassword)) {
+                return cb(null, false, { message: 'Incorrect password.' });
+            }
+            
+            return cb(null, singleUser);
+        });
+    } catch(error) {
+        return cb(error);
+    }
 }));
-  
+
 passport.serializeUser(function(user, cb) {
     process.nextTick(function() {
         cb(null, { id: user.id, username: user.username });
@@ -33,10 +42,6 @@ passport.deserializeUser(function(user, cb) {
     });
 });
 
-router.get('/login', function(req, res, next) {
-    res.render('login');
-});
-
 router.post('/login/password', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'
@@ -45,10 +50,6 @@ router.post('/login/password', passport.authenticate('local', {
 router.post('/logout', function(req, res, next) {
     req.logout();
     res.redirect('/');
-});
-
-router.get('/signup', function(req, res, next) {
-    res.render('signup');
 });
 
 router.post('/signup', async function(req, res, next) {
@@ -63,7 +64,7 @@ router.post('/signup', async function(req, res, next) {
         const newUser = {
             name: req.body.username,
             email: req.body.email,
-            password: hashedPassword.toString('hex'),
+            password: hashedPassword,
             buf: buf
         }
         try {
