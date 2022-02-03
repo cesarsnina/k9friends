@@ -1,0 +1,21 @@
+.dog-container {
+  display: flex; 
+  flex-wrap: wrap;
+}
+
+.dog-block {
+  margin: 25px;
+  text-align: center;
+  /* border: 5px solid red; */
+}
+
+
+.dog-image {
+  border-radius: 50%;
+  width:12em;
+  height:12em;
+}
+
+.dog-link {
+
+}
