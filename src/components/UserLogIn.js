@@ -21,7 +21,7 @@ const UserLogIn = () => {
     }
 
     return (
-        <Container>
+        <Container className='login-container'>
             <Row className="justify-content-md-center"><Col md={5} xs={9}>
                 <h1 className="login-header mb-4">Log In</h1>
 

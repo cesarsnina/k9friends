@@ -13,8 +13,9 @@ const Dashboard = () => {
           <div key={idx} className='dog-block'>
             <a  href="https://en.wikipedia.org/wiki/Main_Page">       
               <img  className="dog-image" src={dog.image}></img>
-              <p className='dog-name'>{dog.name}</p>
+              {/* <p className='dog-name'>{dog.name}</p> */}
             </a>
+            <p className='dog-name'>{dog.name}</p>
           </div>
 
         ))}
