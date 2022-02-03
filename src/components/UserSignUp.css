@@ -1,0 +1,27 @@
+.signup-header {
+    text-align: center;
+    color: #641AB5;
+}
+
+.signup-submit, .signup-register:hover {
+    background-color: #641AB5;
+}
+
+.signup-submit:hover {
+    background-color: #410E78;
+}
+
+.signup-submit:focus, .signup-register:focus {
+    background-color: #2E0652;
+}
+
+.signup-submit, .signup-register {
+    width: 100%;
+    border-radius: 18px;
+}
+
+.signup-register {
+    background-color: #ffffff;
+    color: #641AB5;
+    border-color: #641AB5;
+}

@@ -1,0 +1,8 @@
+{
+    "dogs": [
+        {  "name": "Oreo", "breed": "Pitbull", "age": 2, "location": "The Bronx", "image": "", "description": "Nice Dog"},
+        {  "name": "Romeo", "breed": "Chihuahua", "age": 3, "location": "The Bronx", "image": "", "description": "Evil Dog"},
+        {  "name": "Jexster", "breed": "Poodle", "age": 1, "location": "Queens", "image": "", "description": "Caring Dog"},
+        {  "name": "Arthur", "breed": "Boxer", "age": 2, "location": "Manhattan", "image": "", "description": "Bad Dog"}
+    ]
+}
