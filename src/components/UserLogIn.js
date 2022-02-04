@@ -22,7 +22,7 @@ const UserLogIn = () => {
 
     return (
         <Container className='login-container'>
-            <Row className="justify-content-md-center"><Col md={5} xs={9}>
+            <Row className="justify-content-md-center"><Col md={9} xs={9} lg={9} xl={9}>
                 <h1 className="login-header mb-4">Log In</h1>
 
                 <Form onClick={handleSubmit}>
