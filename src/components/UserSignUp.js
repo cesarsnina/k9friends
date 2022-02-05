@@ -8,16 +8,14 @@ import './UserSignUp.css';
 const UserSignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPass, setConfirmPass] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = {
-            email: email,
+            userEmail: email,
             password: password,
-            confirmPass: confirmPass
         }
-        axios.post('/signup', {
+        axios.post('/api/signup', {
             signupInfo: form
         })
     }
@@ -36,11 +34,6 @@ const UserSignUp = () => {
                     <Form.Group className="mb-5" controlId="Password">
                         <Form.Control type="password" placeholder="Password"
                             onChange={event=>setPassword(event.target.value)}/>
-                    </Form.Group>
-
-                    <Form.Group className="mb-5" controlId="confirmPass">
-                        <Form.Control type="password" placeholder="Confirm Password"
-                            onChange={event=>setConfirmPass(event.target.value)}/>
                     </Form.Group>
 
                     <Button type="submit" className="signup-submit mb-5">Create Your Account</Button>

@@ -29,16 +29,3 @@
 .login-container {
   width: 100%;
 }
-
-/* @media only screen and (max-width: 600px) {
-    .login-container {
-        display: flex;
-        justify-content: center;
-
-        
-    }
-    .justify-content-md-center{
-        margin-right: 0px;
-    }
-  
-  } */
