@@ -15,7 +15,7 @@ const UserLogIn = () => {
             email: email,
             password: password
         }
-        axios.post('/login', {
+        axios.post('/api/login/password', {
             loginInfo: form
         })
     }

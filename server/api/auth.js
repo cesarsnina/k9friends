@@ -4,15 +4,15 @@ const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
 const { User } = require('../model');
 
-passport.use(new LocalStrategy(async function verify(username, password, cb) {
+passport.use(new LocalStrategy(async function verify(userEmail, password, cb) {
     try {
         // fetch user with the name provided
         const singleUser = await User.findAll({
-            where: { name: username }
+            where: { email: userEmail }
         });
         
         // checks if user with the name provided exist
-        if (!singleUser) { return cb(null, false, { message: 'Incorrect username.' }) };
+        if (!singleUser) { return cb(null, false, { message: 'Incorrect Email.' }) };
         
         // hash password provided and compare it if match
         crypto.pbkdf2(password, singleUser[0].buf, 310000, 32, 'sha256', function(err, hashedPassword) {
@@ -20,7 +20,7 @@ passport.use(new LocalStrategy(async function verify(username, password, cb) {
             
             // compare the two password
             if (!crypto.timingSafeEqual(singleUser[0].password, hashedPassword)) {
-                return cb(null, false, { message: 'Incorrect password.' });
+                return cb(null, false, { message: 'Incorrect Password.' });
             }
             
             return cb(null, singleUser);
@@ -32,7 +32,7 @@ passport.use(new LocalStrategy(async function verify(username, password, cb) {
 
 passport.serializeUser(function(user, cb) {
     process.nextTick(function() {
-        cb(null, { id: user.id, username: user.username });
+        cb(null, { id: user.id, email: user.userEmail });
     });
 });
 
@@ -62,8 +62,7 @@ router.post('/signup', async function(req, res, next) {
 
         // created an object with the user's credential
         const newUser = {
-            name: req.body.username,
-            email: req.body.email,
+            email: req.body.userEmail,
             password: hashedPassword,
             buf: buf
         }
@@ -73,7 +72,7 @@ router.post('/signup', async function(req, res, next) {
 
             const user = {
                 id: this.lastID,
-                username: req.body.username
+                userEmail: req.body.userEmail
             };
             req.login(user, (error) => {
                 if (error) return next(error);

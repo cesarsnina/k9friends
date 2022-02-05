@@ -1,7 +1,6 @@
 import React from 'react';
-import { data } from './seed'
-import './styles/Dashboard.css'
-
+import { data } from './seed';
+import './styles/Dashboard.css';
 
 const Dashboard = () => {
 
